@@ -1,5 +1,5 @@
 # Docker
-En un servidor linux, se logran 4 wordpress cada uno con su base de datos, cada uno de ellos (wordpress y base de datos) en contenedores aislados.
+En un servidor linux, se ponen operativos 4 wordpress cada uno con su base de datos, cada uno de ellos (wordpress y base de datos) en contenedores docker aislados.
 Otros contenedores: 
 - jwilder/nginx-proxy
 - letsencrypt
