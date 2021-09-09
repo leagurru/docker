@@ -1,5 +1,0 @@
-CONTAINER_NAME_NGINX=paso5_nginx-proxy
-CONTAINER_NAME_LETSENCRYPT=nginx-letsencrypt
-
-# Nombre de la Red
-NETWORK=nginx-proxy
