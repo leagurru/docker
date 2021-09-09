@@ -1,4 +1,4 @@
-# docker
+# Docker
 en un servidor linux, se logran 4 wordpress cada uno con su base de datos, cada uno de ellos (wordpress y base de datos) en contenedores aislados.
 Otros contenedores: 
 - jwilder/nginx-proxy
