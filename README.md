@@ -1,15 +1,13 @@
 # docker
 4 wordpress en 2 dominios con subdominios
 
-una carpeta (nginx-proxy) con un yaml para el contenedor para nginx
-una carpeta (paso5) con un yaml con los containers para dos wordpress, cada uno asociado a un mysql
+una carpeta (nginx-proxy) con un yaml para el contenedor para nginx don la librería jwilder y otro contenedor con el letsencrypt para aplicar certificados SSL
+una carpeta (paso5) con un yaml con los containers para 4 wordpress, cada uno asociado a un contenedor distinto para la base de datos
 
-dominios:
-elearn4all.tk
-elearn4all.ml
-wordpress.elearn4all.tk
-wordpress.elearn4all.ml
+dominios obtenidos en freenom.com:
+elearn4all.tk, con el subdominio wordpress.elearn4all.tk
+elearn4all.ml, con el subdominio wordpress.elearn4all.ml
 
-sin ssl
-con persistencia
-funcionando OK 
+con persistencia: en la carpeta /var/lib/docker/volumes del servidor
+SSL: pendiente
+phpmyadmin: pendiente
