@@ -10,7 +10,7 @@ elearn4all.ml, con el subdominio wordpress.elearn4all.ml
 
 con persistencia: en la carpeta /var/lib/docker/volumes del servidor
 
-Importante: los dominios y subdominios deben estar definidos en el archivo /etc/hosts del servidor:
+Importante: los dominios y subdominios deben estar definidos en el archivo /etc/hosts del servidor. Ejemplo:
 
 127.0.0.1       elearn4all.tk
 
@@ -21,8 +21,11 @@ Importante: los dominios y subdominios deben estar definidos en el archivo /etc/
 127.0.0.1       www.wordpress.elearn4all.tk
 
 127.0.0.1       elearn4all.ml
+
 127.0.0.1       www.elearn4all.ml
+
 127.0.0.1       wordpress.elearn4all.ml
+
 127.0.0.1       www.wordpress.elearn4all.ml
 
 
