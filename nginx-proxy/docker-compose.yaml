@@ -1,0 +1,56 @@
+# comando:
+
+#sudo docker run --name nginx-proxy 
+# --net dockerwp 
+# -p 80:80 -p 443:443 
+# -v ~/certs:/etc/nginx/certs 
+# -v /etc/nginx/vhost.d 
+# -v /usr/share/nginx/html 
+# -v /var/run/docker.sock:/tmp/docker.sock:ro 
+# --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy 
+# -d 
+# --restart always jwilder/nginx-proxy 
+version: '2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    env_file: .env
+    container_name: ${CONTAINER_NAME_NGINX}
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-data/certs:/etc/nginx/certs 
+      - ./nginx-data/vhost.d:/etc/nginx/vhost.d
+      - ./nginx-data/html:/usr/share/nginx/html
+      #- /usr/share/nginx/html
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+#      - certs:/etc/nginx/certs
+#:ro
+#      - vhostd:/etc/nginx/vhost.d
+#    labels:
+#      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+  nginx-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    env_file: .env
+    container_name: ${CONTAINER_NAME_LETSENCRYPT}
+    restart: always
+    environment:
+      - NGINX_PROXY_CONTAINER=${CONTAINER_NAME_NGINX}
+      - DEFAULT_EMAIL=leagurru@gmail.com
+    volumes:
+      - ./nginx-data/certs:/etc/nginx/certs:rw
+      - ./nginx-data/vhost.d:/etc/nginx/vhost.d
+      - ./nginx-data/html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+volumes: 
+  certs:
+  html:
+  vhostd:
+     
+networks: 
+  default:
+    external:
+      name: ${NETWORK}
