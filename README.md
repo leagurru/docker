@@ -1,14 +1,15 @@
 # docker
-en un servidor, 4 wordpress en 2 dominios con subdominios
+en un servidor linux, se logran 4 wordpress cada uno con su base de datos, cada uno de ellos (wordpress y base de datos) en contenedores aislados.
 
-una carpeta (nginx-proxy) con un yaml para el contenedor para nginx don la librería jwilder y otro contenedor con el letsencrypt para aplicar certificados SSL
-una carpeta (paso5) con un yaml con los containers para 4 wordpress, cada uno asociado a un contenedor distinto para la base de datos
-
-dominios obtenidos en freenom.com:
+Se utilizan 2 dominios obtenidos en freenom.com:
 elearn4all.tk, con el subdominio wordpress.elearn4all.tk
 elearn4all.ml, con el subdominio wordpress.elearn4all.ml
 
-con persistencia: en la carpeta /var/lib/docker/volumes del servidor
+- una carpeta (nginx-proxy) con un yaml para el contenedor para nginx don la librería jwilder y otro contenedor con el letsencrypt para aplicar certificados SSL
+- una carpeta (paso5) con un yaml con los containers para 4 wordpress, cada uno asociado a un contenedor distinto para la base de datos
+
+
+Persistencia: en la carpeta /var/lib/docker/volumes del servidor
 
 Importante: los dominios y subdominios deben estar definidos en el archivo /etc/hosts del servidor. Ejemplo:
 
