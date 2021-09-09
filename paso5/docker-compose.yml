@@ -1,0 +1,181 @@
+# sudo docker run 
+# --name mariadb1 #
+# --net dockerwp 
+# -v mariadb1:/var/lib/mysql 
+# -e MYSQL_ROOT_PASSWORD=supersecret 
+# -e MYSQL_DATABASE=db1 
+# -e MYSQL_USER=db1user 
+# -e MYSQL_PASSWORD=secret 
+# -d 
+# --restart always mariadb
+
+# sudo docker run 
+# --name wordpress1 
+# --net dockerwp 
+# -v wordpress1:/var/www/html 
+# -v ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini 
+# -e WORDPRESS_DB_HOST=mariadb1:3306 
+# -e WORDPRESS_DB_NAME=db1 
+# -e WORDPRESS_DB_USER=db1user 
+# -e WORDPRESS_DB_PASSWORD=secret 
+# -e VIRTUAL_HOST=elearn4all.tk,www.elearn4all.tk 
+# -e LETSENCRYPT_HOST=elearn4all.tk,www.elearn4all.tk 
+# -e LETSENCRYPT_EMAIL=admin@domain1.com # -d 
+# --restart always wordpress
+
+
+version: '3.7'
+services:
+  db1:
+    image: mariadb:latest
+    env_file: .env
+    container_name: ${CONTAINER_DB1}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE1}
+      MYSQL_USER: ${MYSQL_USER1}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD1}
+    volumes: 
+      - ${CONTAINER_DB1}:/var/lib/mysql
+      #- ./dbdata:/var/lib/mysql
+      #- ./logs/mysql:/var/log/mysql
+      #- ./mysql-conf:/etc/mysql/conf.d
+    command: --default-authentication-plugin=mysql_native_password
+
+  db2:
+    image: mariadb:latest
+    env_file: .env
+    container_name: ${CONTAINER_DB2}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE2}
+      MYSQL_USER: ${MYSQL_USER2}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD2}
+    volumes: 
+      - ${CONTAINER_DB2}:/var/lib/mysql
+      #- ./dbdata:/var/lib/mysql
+      #- ./logs/mysql:/var/log/mysql
+      #- ./mysql-conf:/etc/mysql/conf.d
+    command: --default-authentication-plugin=mysql_native_password
+
+  db3:
+    image: mariadb:latest
+    env_file: .env
+    container_name: ${CONTAINER_DB3}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE3}
+      MYSQL_USER: ${MYSQL_USER3}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD3}
+    volumes:
+      - ${CONTAINER_DB3}:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
+  db4:
+    image: mariadb:latest
+    env_file: .env
+    container_name: ${CONTAINER_DB4}
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE4}
+      MYSQL_USER: ${MYSQL_USER4}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD4}
+    volumes:
+      - ${CONTAINER_DB4}:/var/lib/mysql
+    command: --default_authentication-plugin=mysql_native_password
+
+  wordpress1:
+    image: wordpress:latest
+    env_file: .env
+    container_name: ${CONTAINER_WP1}
+    depends_on:
+      - db1
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=${CONTAINER_DB1}:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER1}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD1}
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE1}
+      - VIRTUAL_HOST=${VIRTUAL_HOST_WP1}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_WP1}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ${CONTAINER_WP1}:/var/www/html 
+      - ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini 
+
+  wordpress2:
+    image: wordpress:latest
+    env_file: .env
+    container_name: ${CONTAINER_WP2}
+    depends_on:
+      - db2
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=${CONTAINER_DB2}:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER2}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD2}
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE2}
+      - VIRTUAL_HOST=${VIRTUAL_HOST_WP2}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_WP2}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ${CONTAINER_WP2}:/var/www/html 
+      - ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini 
+
+  wordpress3:
+    image: wordpress:latest
+    env_file: .env
+    container_name: ${CONTAINER_WP3}
+    depends_on:
+      - db3
+    restart: always
+    environment:
+    - WORDPRESS_DB_HOST=${CONTAINER_DB3}:3306
+    - WORDPRESS_DB_USER=${MYSQL_USER3}
+    - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD3}
+    - WORDPRESS_DB_NAME=${MYSQL_DATABASE3}
+    - VIRTUAL_HOST=${VIRTUAL_HOST_WP3}
+    - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_WP3}
+    - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ${CONTAINER_WP3}:/var/www/html
+      - ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+
+
+  wordpress4:
+    image: wordpress:latest
+    env_file: .env
+    container_name: ${CONTAINER_WP4}
+    depends_on:
+      - db4
+    restart: always
+    environment:
+      - WORDPRESS_DB_HOST=${CONTAINER_DB4}:3306
+      - WORDPRESS_DB_USER=${MYSQL_USER4}
+      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD4}
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE4}
+      - VIRTUAL_HOST=${VIRTUAL_HOST_WP4}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST_WP4}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}
+    volumes:
+      - ${CONTAINER_WP4}:/var/www/html
+      - ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+
+volumes:
+  db_tk:
+  wp_tk:
+  db_ml:
+  wp_ml:
+  db_tk_subdominio_wordpress:
+  wp_tk_subdominio_wordpress:
+  db_ml_subdominio_wordpress:
+  wp_ml_subdominio_wordpress:
+
+networks:
+  default:
+    external:
+      name: ${NETWORK}
