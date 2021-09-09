@@ -9,5 +9,7 @@ elearn4all.tk, con el subdominio wordpress.elearn4all.tk
 elearn4all.ml, con el subdominio wordpress.elearn4all.ml
 
 con persistencia: en la carpeta /var/lib/docker/volumes del servidor
-SSL: pendiente
-phpmyadmin: pendiente
+-------------------------
+Pendiente:
+SSL
+phpmyadmin
