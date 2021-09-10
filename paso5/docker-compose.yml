@@ -107,6 +107,76 @@ services:
       - ${CONTAINER_WP1}:/var/www/html 
       - ~/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini 
 
+
+  phpmyadmin1:
+    depends_on: 
+      - db1
+    image: phpmyadmin/phpmyadmin:latest
+    env_file: .env
+    container_name: ${CONTAINER_PHPMYADMIN_WP1}
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - VIRTUAL_HOST=${PHPMYADMIN_HOST_WP1}
+      - PMA_HOST=db1
+      - MYSQL_USER=${MYSQL_USER1}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD1}
+#      - LETSENCRYPT_HOST=phpmyadmin.example.com
+#      - LETSENCRYPT_EMAIL=email@example.com
+
+  phpmyadmin2:
+    depends_on:
+      - db2                                       
+    image: phpmyadmin/phpmyadmin:latest
+    env_file: .env
+    container_name: ${CONTAINER_PHPMYADMIN_WP2}
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - VIRTUAL_HOST=${PHPMYADMIN_HOST_WP2}
+      - PMA_HOST=db2
+      - MYSQL_USER=${MYSQL_USER2}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD2}
+#      - LETSENCRYPT_HOST=phpmyadmin.example.com
+#      - LETSENCRYPT_EMAIL=email@example.com  
+
+#  phpmyadmin3:
+#    depends_on:
+#      - db3                                                             
+#    image: phpmyadmin/phpmyadmin:latest
+#    env_file: .env
+#    container_name: ${CONTAINER_PHPMYADMIN_WP3}
+#    restart: always
+#    environment:
+#      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+#      - VIRTUAL_HOST=${PHPMYADMIN_HOST_WP3}
+#      - PMA_HOST=db3
+#      - PMA_USER=root
+#      - PMA_PASSWORD=root
+#- VIRTUAL_PORT=8002
+#      - LETSENCRYPT_HOST=phpmyadmin.example.com
+#      - LETSENCRYPT_EMAIL=email@example.com
+
+#  phpmyadmin4:
+#    depends_on:
+#      - db4                                                                   
+#    image: phpmyadmin/phpmyadmin:latest
+#    env_file: .env
+#    container_name: ${CONTAINER_PHPMYADMIN_WP4}
+#    restart: always
+#    environment:
+#     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+#     - VIRTUAL_HOST=${PHPMYADMIN_HOST_WP4}
+#     - PMA_HOST=db4
+#     - PMA_USER=root
+#     - PMA_PASSWORD=root
+#- VIRTUAL_PORT=8002
+#      - LETSENCRYPT_HOST=phpmyadmin.example.com
+#      - LETSENCRYPT_EMAIL=email@example.com
+
+
+
+
   wordpress2:
     image: wordpress:latest
     env_file: .env
