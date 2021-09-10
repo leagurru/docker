@@ -36,6 +36,7 @@ Importante: los dominios y subdominios deben estar definidos en el archivo /etc/
 127.0.0.1       www.wordpress.elearn4all.ml
 
 127.0.0.1       phpmyadmin.elearn4all.tk
+
 127.0.0.1       phpmyadmin.elearn4all.ml
 
 
