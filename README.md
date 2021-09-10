@@ -1,9 +1,9 @@
 # Docker
 En un servidor linux, se ponen operativos 4 wordpress cada uno con su base de datos, cada uno de ellos (wordpress y base de datos) en contenedores docker aislados.
 Otros contenedores: 
-- jwilder/nginx-proxy
+- jwilder/nginx-proxy (proxy reverso con NGINX)
 - letsencrypt
-- phpadmin para dos worpress
+- phpadmin para dos wordpress
 
 , todos dentro de la misma red:
 
