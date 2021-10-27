@@ -39,9 +39,4 @@ Importante: los dominios y subdominios deben estar definidos en el archivo /etc/
 
 127.0.0.1       phpmyadmin.elearn4all.ml
 
-
 -------------------------
-Pendiente:
-- SSL
-
-
