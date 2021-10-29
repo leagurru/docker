@@ -11,7 +11,7 @@ Se utilizan 2 dominios obtenidos en freenom.com:
 - elearn4all.tk, con el subdominio wordpress.elearn4all.tk
 - elearn4all.ml, con el subdominio wordpress.elearn4all.ml
 
-- una carpeta (nginx-proxy) con un yaml para el contenedor para nginx don la librería jwilder y otro contenedor con el letsencrypt para aplicar certificados SSL
+- una carpeta (nginx-proxy) con un yaml para el contenedor para nginx con la librería jwilder y otro contenedor con el letsencrypt para aplicar certificados SSL
 - una carpeta (paso5) con un yaml con los containers para 4 wordpress, cada uno asociado a un contenedor distinto para la base de datos y dos contenedores phpmyadmin vinculados a las bases de datos de los wordpress de los dominios elearn4all.tk y elearn4all.ml
 
 
