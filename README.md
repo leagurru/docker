@@ -3,7 +3,7 @@ En un servidor linux, se ponen operativos 4 wordpress cada uno con su base de da
 Otros contenedores: 
 - jwilder/nginx-proxy (proxy reverso con NGINX)
 - letsencrypt
-- phpadmin para dos wordpress
+- phpmyadmin para dos wordpress
 
 , todos dentro de la misma red:
 
